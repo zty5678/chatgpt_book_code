@@ -1,3 +1,41 @@
+## 编译:
+1. 在根目录新增一个.env方法:
+```
+OPENAI_API_KEY=sk-xxxxxx
+HTTP_PROXY=http://127.0.0.1:xxxxx
+BASE_URL=
+```
+BASE_URL可以为空.
+
+
+
+2. 运行flutter_gen:
+
+如果是Windows, 需要把C:\Users\{用户名}\AppData\Local\Pub\Cache\bin\fluttergen.bat 添加到系统的环境变量里.
+然后执行:
+```
+fluttergen -c pubspec.yaml
+```
+如果提示找不到```/.dart_tool/flutter_gen/pubspec.yaml```文件, 可以手动创建一个空的pubspec.yaml, 内容如下:
+```
+dependencies:
+```
+3. 生成国际化资源文件:
+```
+flutter gen-l10n
+```
+4. 最后执行:
+```
+flutter pub run build_runner build
+```
+
+如果发现有编译错误, 提示缺少_Env, 即env.g.dart无法自动生成:
+可以执行下这个命令:
+```
+flutter packages pub run build_runner clean
+```
+
+
 ## 作者介绍
 
 ![作者简介(2100x389).jpg](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff92472dd67e48a7a50468f39a4a3fc7~tplv-k3u1fbpfcp-watermark.image?)
